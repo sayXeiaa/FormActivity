@@ -20,7 +20,7 @@
         var check =  currentYear - year;
 
         if(check < 22){
-            document.getElementById("message3").innerHTML ="Minors are not allowed!";
+            document.getElementById("message2").innerHTML ="Minors are not allowed!";
         }
     }
     function validate(){
@@ -44,8 +44,13 @@
         if(check < 22){
             return false;
         }
-        document.getElementById("message4").innerHTML ="Hooray! Your account has been successfully created.";
+        document.getElementById("message3").innerHTML ="Hooray! Your account has been successfully created.";
         return true;
+    }
+    function removeContent(){ 
+        document.getElementById("message").innerHTML ="";
+        document.getElementById("message2").innerHTML ="";
+        document.getElementById("message3").innerHTML ="";
     }
     </script>	
     <style>
@@ -92,7 +97,7 @@
     <body>
     <div class = "box">
         <h1>Registration Form</h1>
-        <span id = "message4" style="color:green"> </span>
+        <span id = "message3" style="color:green"> </span>
         <form>
             First Name: <br /> <input type="text" name="firstname"/>
             <br/>
@@ -106,7 +111,7 @@
             Password:<input type="password" id="pswd" value = "">
                 <span id = "message" style="color:red"> </span> <br>
             Date of Birth:<input type="date" id="bday">
-                <span id = "message3" style="color:red"> </span> <br>
+                <span id = "message2" style="color:red"> </span> <br>
 
             Gender: <br /><input type="radio" name="male" value="male"/> Male
             <input type="radio" name="female" value="female"/> Female
@@ -116,7 +121,7 @@
             <br/>
             Address: <br /><textarea name="address" cols="34" rows="5"></textarea>
             <input type="button" onclick="verifyAge(), verifyPassword(), validate()" id="submit" value="Submit">
-            <input type="reset" id="reset" value="Reset">
+            <input type="reset" onclick="removeContent()" id="reset" value="Reset">
         </form>
     </div>
     </body>
