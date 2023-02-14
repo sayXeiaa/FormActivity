@@ -4,6 +4,50 @@
         <title>Form Activity</title>
         <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
     </head>
+    <script language="JavaScript" type = "text/javascript">
+    function verifyPassword(){
+        var pw = document.getElementById("pswd").value;
+        if(pw.length < 8){
+            document.getElementById("message").innerHTML ="Password must be at least 8 characters.";
+        }
+    }
+    function verifyAge(){
+        var userinput = document.getElementById("bday").value;  
+        var dob = new Date(userinput);  
+
+        let year = dob.getFullYear();
+        const currentYear = new Date().getFullYear();
+        var check =  currentYear - year;
+
+        if(check < 22){
+            document.getElementById("message3").innerHTML ="Minors are not allowed!";
+        }
+    }
+    function validate(){
+        var pw = document.getElementById("pswd").value;
+
+        if(pw.length < 8){
+            return false;
+            console.log('hello')
+        }
+        var userinput = document.getElementById("bday").value;  
+        var dob = new Date(userinput);  
+
+        if(userinput== null || userinput=='') { 
+            return false;
+        } 
+
+        let year = dob.getFullYear();
+        let currentYear = new Date().getFullYear();
+        var check =  currentYear - year;
+    
+        if(check < 22){
+            return false;
+        }
+        document.getElementById("message4").innerHTML ="Hooray! Your account has been successfully created.";
+        return true;
+    }
+    </script>	
     <style>
     body{
         background-color: lightslategray;
@@ -23,13 +67,13 @@
         margin: 4px 0;
         box-sizing: border-box;
     }
-    input[type="reset"]{
+    #reset{
         background-color: red;
         color: white;
         border: white;
         padding: 5px 20px;
     }
-    input[type="submit"]{
+    #submit{
         background-color: green;
         color: white;
         border: white;
@@ -48,29 +92,31 @@
     <body>
     <div class = "box">
         <h1>Registration Form</h1>
+        <span id = "message4" style="color:green"> </span>
         <form>
             First Name: <br /> <input type="text" name="firstname"/>
             <br/>
-            Last Name: <br /><input type="text" name="lastname"/>
+            Last Name: <input type="text" id="lastname"/>
+            
+            Nick Name: <input type="text" id="nickname"/>
+            
+            Email: <br /><input type="email" id="email"/>
             <br/>
-            Nick Name: <br /><input type="text" name="nickname"/>
-            <br/>
-            Email: <br /><input type="email" name="email"/>
-            <br/>
-            Password: <br /><input type="password" nam="password"/>
-            <br/>
-            Date of Birth: <br /><input type="date" name="bday"/>
-            <br/>
+
+            Password:<input type="password" id="pswd" value = "">
+                <span id = "message" style="color:red"> </span> <br>
+            Date of Birth:<input type="date" id="bday">
+                <span id = "message3" style="color:red"> </span> <br>
+
             Gender: <br /><input type="radio" name="male" value="male"/> Male
             <input type="radio" name="female" value="female"/> Female
             <input type="radio" name="other" value="other"/> Other
             <br/>
-            Mobile: <br /><input type="number" name="mobile"/>
+            Mobile: <br /><input type="number" id="mobile"/>
             <br/>
             Address: <br /><textarea name="address" cols="34" rows="5"></textarea>
-            <br/>
-            <input type="submit" name="submit" value="Submit"/>
-            <input type="reset" name="reset" value="Reset"/>
+            <input type="button" onclick="verifyAge(), verifyPassword(), validate()" id="submit" value="Submit">
+            <input type="reset" id="reset" value="Reset">
         </form>
     </div>
     </body>
